@@ -12,7 +12,8 @@ mix
 
 mix
    .react("resources/js/projeto-react/index.js", "public/js/react.js")
-   .sass('resources/sass/app.scss', 'public/css')
+   .sass("resources/scss/app.scss", "public/css")
+   .sass("resources/scss/style.scss", "public/css")
 
    .browserSync({
       proxy: 'localhost:8000',
