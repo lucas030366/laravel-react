@@ -11,5 +11,4 @@ export default () =>
     <section className="content-wrapper px-4 py-2">
       <Router />
     </section>
-
   </BrowserRouter>

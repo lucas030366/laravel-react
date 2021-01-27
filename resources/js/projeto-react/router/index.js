@@ -4,8 +4,7 @@ import { Switch, Route, Redirect } from "react-router"
 const Index = lazy(() => (import("../components/dashboard/Index")))
 const Config = lazy(() => (import("../components/dashboard/Configuracoes")))
 const Order = lazy(() => (import("../components/dashboard/order/Order")))
-
-import Login from "../components/auth/Login"
+const Login = lazy(() => (import("../components/auth/Login")))
 
 const route = () => {
   return (
