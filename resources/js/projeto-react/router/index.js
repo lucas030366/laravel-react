@@ -1,18 +1,24 @@
-import React from "react"
+import React, { lazy, Suspense } from "react"
 import { Switch, Route, Redirect } from "react-router"
 
-import Index from "../components/dashboard/Index"
-import Contato from "../components/dashboard/Contato"
+const Index = lazy(() => (import("../components/dashboard/Index")))
+const Config = lazy(() => (import("../components/dashboard/Configuracoes")))
+const Order = lazy(() => (import("../components/dashboard/order/Order")))
+
 import Login from "../components/auth/Login"
 
 const route = () => {
   return (
-    <Switch>
-      <Route exact path="/" component={Index} />
-      <Route exact path="/contato" component={Contato} />
-      <Route exact path="/login" component={Login} />
-      <Redirect from="*" to="/" />
-    </Switch>
+    <Suspense fallback={<></>}>
+      <Switch>
+        <Route exact path="/" component={Index} />
+        <Route exact path="/configuracoes" component={Config} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/orcamento" component={Order} />
+        <Redirect from="*" to="/" />
+      </Switch>
+    </Suspense>
+
   )
 }
 

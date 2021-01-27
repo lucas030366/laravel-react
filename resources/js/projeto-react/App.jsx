@@ -8,6 +8,8 @@ import Footer from "./components/layouts/footer/Footer"
 export default () =>
   <BrowserRouter>
     <Header />
-    <Router />
-    <Footer />
+    <section className="content-wrapper px-4 py-2">
+      <Router />
+    </section>
+
   </BrowserRouter>
