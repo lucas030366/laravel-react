@@ -32,9 +32,9 @@ const Sidebar = () => {
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="configuracoes">
+              <Link className="nav-link" to="variaveis">
                 <i className="nav-icon fas fa-sync"></i>
-                <p>Configurações</p>
+                <p>Variaveis</p>
               </Link>
             </li>
 

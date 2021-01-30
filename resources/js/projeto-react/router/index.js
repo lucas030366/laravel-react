@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from "react"
 import { Switch, Route, Redirect } from "react-router"
 
 const Index = lazy(() => (import("../components/dashboard/Index")))
-const Config = lazy(() => (import("../components/dashboard/Configuracoes")))
+import Variaveis from "../components/dashboard/Variaveis"
 const Order = lazy(() => (import("../components/dashboard/order/Order")))
 const Login = lazy(() => (import("../components/auth/Login")))
 
@@ -11,9 +11,9 @@ const route = () => {
     <Suspense fallback={<></>}>
       <Switch>
         <Route exact path="/" component={Index} />
-        <Route exact path="/configuracoes" component={Config} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/orcamento" component={Order} />
+        <Route path="/variaveis" component={Variaveis} />
+        <Route path="/login" component={Login} />
+        <Route path="/orcamento" component={Order} />
         <Redirect from="*" to="/" />
       </Switch>
     </Suspense>
