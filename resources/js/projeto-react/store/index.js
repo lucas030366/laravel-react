@@ -1,10 +1,10 @@
 import { createStore, combineReducers } from "redux"
-import variables from "../resources/store/variaveis/mutations"
+import variables from "../resources/store/variaveis/reducer"
 
-const { get_variables } = variables
+const { set_variables } = variables
 
 const root_reducers = combineReducers({
-  get_variables
+  set_variables
 })
 
 export default createStore(root_reducers)

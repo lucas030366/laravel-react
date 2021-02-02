@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react"
-import { connect } from "react-redux"
-import { bindActionCreators } from "redux"
+import { useSelector, useDispatch } from "react-redux"
 
-import actions from "../../resources/store/variaveis/actions"
+
+import actions from "@/resources/store/variaveis/actions"
+import api from "@/resources/request/variables"
 
 const initial_state = {
   combustivel: null,
@@ -38,30 +39,39 @@ const initial_state = {
   vassoura: null,
 }
 
-const Variaveis = ({ variaveis, getVariables }) => {
+const { getVariables } = actions
+
+const Variaveis = () => {
+
+  const variables = useSelector(state => state.set_variables.variables)
+  const dispatch = useDispatch()
+
   const [itens, set_itens] = useState(initial_state)
+  const [outer, set_outer] = useState([])
 
 
   useEffect(() => {
-    (async () => {
+    if (Object.values(variables).length > 0) return
 
+    (async () => {
       try {
-        await getVariables()
-        set_itens(variaveis)
+        const response = await api.get_variables()
+        dispatch(getVariables(response))
       } catch (error) {
         console.log(error.message)
       }
-    })();
+    })()
 
   }, [])
 
+
   function onChange(event) {
     const { name, value } = event.target
-    set_itens({ ...itens, [name]: value })
+    set_outer({ ...outer, [name]: value })
   }
 
   function submit() {
-    console.log(itens)
+    console.log(outer, variables)
   }
 
   return (
@@ -70,20 +80,17 @@ const Variaveis = ({ variaveis, getVariables }) => {
       <div className="veiculo">
         <h3>Veículo</h3>
 
-        <div className="row">
-
-          <div className="col-md-2">
-            <div className="form-group">
-              <label className="col-form-label font-weight-normal" htmlFor="combustivel">
-                combustível
+        <div className="col-md-2">
+          <div className="form-group">
+            <label className="col-form-label font-weight-normal" htmlFor="combustivel">
+              combustível
               </label>
-              <input name="combustivel" className="form-control" id="combustivel" onChange={onChange} />
-            </div>
+            <input name="combustivel" className="form-control"
+              id="combustivel" value={variables.combustivel || ''}
+              onChange={onChange} />
           </div>
-
         </div>
       </div>
-
       <hr />
 
       <div className="telhado">
@@ -429,10 +436,4 @@ const Variaveis = ({ variaveis, getVariables }) => {
   )
 }
 
-const mapStateToProps = state => ({
-  variaveis: state.get_variables.variables
-})
-
-const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch)
-
-export default connect(mapStateToProps, mapDispatchToProps)(Variaveis)
+export default Variaveis

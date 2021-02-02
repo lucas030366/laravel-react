@@ -1,9 +1,15 @@
 import React from "react"
+import { useSelector } from "react-redux"
 
 const Index = () => {
+  const variables = useSelector(state => state.set_variables.variables)
+
   return (
     <div className="container">
       <div className="row">
+        {
+          <h3>{ variables.combustivel }</h3>
+        }
 
         <div className="col-4">
           <div className="small-box bg-gradient-success">

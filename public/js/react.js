@@ -38005,8 +38005,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _resources_store_variaveis_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../resources/store/variaveis/actions */ "./resources/js/projeto-react/resources/store/variaveis/actions.js");
+/* harmony import */ var _resources_store_variaveis_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/resources/store/variaveis/actions */ "./resources/js/projeto-react/resources/store/variaveis/actions.js");
+/* harmony import */ var _resources_request_variables__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/resources/request/variables */ "./resources/js/projeto-react/resources/request/variables.js");
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -38068,42 +38068,54 @@ var initial_state = {
   lona: null,
   vassoura: null
 };
+var getVariables = _resources_store_variaveis_actions__WEBPACK_IMPORTED_MODULE_3__["default"].getVariables;
 
-var Variaveis = function Variaveis(_ref) {
-  var variaveis = _ref.variaveis,
-      getVariables = _ref.getVariables;
+var Variaveis = function Variaveis() {
+  var variables = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(function (state) {
+    return state.set_variables.variables;
+  });
+  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(initial_state),
       _useState2 = _slicedToArray(_useState, 2),
       itens = _useState2[0],
       set_itens = _useState2[1];
 
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      outer = _useState4[0],
+      set_outer = _useState4[1];
+
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    if (Object.values(variables).length > 0) return;
+
     _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.prev = 0;
               _context.next = 3;
-              return getVariables();
+              return _resources_request_variables__WEBPACK_IMPORTED_MODULE_4__["default"].get_variables();
 
             case 3:
-              set_itens(variaveis);
-              _context.next = 9;
+              response = _context.sent;
+              dispatch(getVariables(response));
+              _context.next = 10;
               break;
 
-            case 6:
-              _context.prev = 6;
+            case 7:
+              _context.prev = 7;
               _context.t0 = _context["catch"](0);
               console.log(_context.t0.message);
 
-            case 9:
+            case 10:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 6]]);
+      }, _callee, null, [[0, 7]]);
     }))();
   }, []);
 
@@ -38111,11 +38123,11 @@ var Variaveis = function Variaveis(_ref) {
     var _event$target = event.target,
         name = _event$target.name,
         value = _event$target.value;
-    set_itens(_objectSpread(_objectSpread({}, itens), {}, _defineProperty({}, name, value)));
+    set_outer(_objectSpread(_objectSpread({}, outer), {}, _defineProperty({}, name, value)));
   }
 
   function submit() {
-    console.log(itens);
+    console.log(outer, variables);
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -38123,8 +38135,6 @@ var Variaveis = function Variaveis(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "veiculo"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "Ve\xEDculo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group"
@@ -38135,8 +38145,9 @@ var Variaveis = function Variaveis(_ref) {
     name: "combustivel",
     className: "form-control",
     id: "combustivel",
+    value: variables.combustivel || '',
     onChange: onChange
-  }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "telhado"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "Telhado (pre\xE7o unit\xE1rio)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "row"
@@ -38538,17 +38549,7 @@ var Variaveis = function Variaveis(_ref) {
   }))));
 };
 
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    variaveis: state.get_variables.variables
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return Object(redux__WEBPACK_IMPORTED_MODULE_3__["bindActionCreators"])(_resources_store_variaveis_actions__WEBPACK_IMPORTED_MODULE_4__["default"], dispatch);
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)(Variaveis));
+/* harmony default export */ __webpack_exports__["default"] = (Variaveis);
 
 /***/ }),
 
@@ -38809,31 +38810,10 @@ var apiClient = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
 
 /***/ }),
 
-/***/ "./resources/js/projeto-react/resources/store/variaveis/actions.js":
-/*!*************************************************************************!*\
-  !*** ./resources/js/projeto-react/resources/store/variaveis/actions.js ***!
-  \*************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var getVariables = function getVariables() {
-  return {
-    type: "get_variables"
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  getVariables: getVariables
-});
-
-/***/ }),
-
-/***/ "./resources/js/projeto-react/resources/store/variaveis/mutations.js":
-/*!***************************************************************************!*\
-  !*** ./resources/js/projeto-react/resources/store/variaveis/mutations.js ***!
-  \***************************************************************************/
+/***/ "./resources/js/projeto-react/resources/request/variables.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js/projeto-react/resources/request/variables.js ***!
+  \*******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -38841,8 +38821,7 @@ var getVariables = function getVariables() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _resources_request_axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/resources/request/axios */ "./resources/js/projeto-react/resources/request/axios.js");
-/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./state */ "./resources/js/projeto-react/resources/store/variaveis/state.js");
+/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./axios */ "./resources/js/projeto-react/resources/request/axios.js");
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -38857,54 +38836,98 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
 var get_variables = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(any, actions) {
-    var url, response, variables;
+  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    var url, response, extract_data;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            if (!(actions.type == "get_variables")) {
-              _context.next = 13;
-              break;
-            }
-
             url = "/variaveis";
-            _context.prev = 2;
+            _context.prev = 1;
+            console.log("requisicao");
             _context.next = 5;
-            return _resources_request_axios__WEBPACK_IMPORTED_MODULE_1__["default"].get(url);
+            return _axios__WEBPACK_IMPORTED_MODULE_1__["default"].get(url);
 
           case 5:
             response = _context.sent;
-            variables = _objectSpread({}, response.data);
-            return _context.abrupt("return", _objectSpread(_objectSpread({}, _state__WEBPACK_IMPORTED_MODULE_2__["default"]), {}, {
-              variables: variables
-            }));
+            extract_data = {};
+            response.data.map(function (el) {
+              return extract_data = _objectSpread({}, el);
+            });
+            return _context.abrupt("return", extract_data);
 
-          case 10:
-            _context.prev = 10;
-            _context.t0 = _context["catch"](2);
+          case 11:
+            _context.prev = 11;
+            _context.t0 = _context["catch"](1);
             console.log(_context.t0.message);
-
-          case 13:
-            return _context.abrupt("return", _state__WEBPACK_IMPORTED_MODULE_2__["default"]);
 
           case 14:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[2, 10]]);
+    }, _callee, null, [[1, 11]]);
   }));
 
-  return function get_variables(_x, _x2) {
+  return function get_variables() {
     return _ref.apply(this, arguments);
   };
 }();
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   get_variables: get_variables
+});
+
+/***/ }),
+
+/***/ "./resources/js/projeto-react/resources/store/variaveis/actions.js":
+/*!*************************************************************************!*\
+  !*** ./resources/js/projeto-react/resources/store/variaveis/actions.js ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var getVariables = function getVariables(response) {
+  return {
+    type: "GET_VARIABLES",
+    response: response
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  getVariables: getVariables
+});
+
+/***/ }),
+
+/***/ "./resources/js/projeto-react/resources/store/variaveis/reducer.js":
+/*!*************************************************************************!*\
+  !*** ./resources/js/projeto-react/resources/store/variaveis/reducer.js ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ "./resources/js/projeto-react/resources/store/variaveis/state.js");
+
+
+var set_variables = function set_variables(any, _ref) {
+  var type = _ref.type,
+      response = _ref.response;
+
+  if (type == "GET_VARIABLES") {
+    _state__WEBPACK_IMPORTED_MODULE_0__["default"].variables = response;
+  }
+
+  return _state__WEBPACK_IMPORTED_MODULE_0__["default"];
+};
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  set_variables: set_variables
 });
 
 /***/ }),
@@ -38941,14 +38964,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Index = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["lazy"])(function () {
-  return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../components/dashboard/Index */ "./resources/js/projeto-react/components/dashboard/Index.jsx"));
+  return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../components/dashboard/Index */ "./resources/js/projeto-react/components/dashboard/Index.jsx"));
 });
 
 var Order = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["lazy"])(function () {
-  return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ../components/dashboard/order/Order */ "./resources/js/projeto-react/components/dashboard/order/Order.jsx"));
+  return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../components/dashboard/order/Order */ "./resources/js/projeto-react/components/dashboard/order/Order.jsx"));
 });
 var Login = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["lazy"])(function () {
-  return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../components/auth/Login */ "./resources/js/projeto-react/components/auth/Login.jsx"));
+  return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../components/auth/Login */ "./resources/js/projeto-react/components/auth/Login.jsx"));
 });
 
 var route = function route() {
@@ -38987,12 +39010,12 @@ var route = function route() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _resources_store_variaveis_mutations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../resources/store/variaveis/mutations */ "./resources/js/projeto-react/resources/store/variaveis/mutations.js");
+/* harmony import */ var _resources_store_variaveis_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../resources/store/variaveis/reducer */ "./resources/js/projeto-react/resources/store/variaveis/reducer.js");
 
 
-var get_variables = _resources_store_variaveis_mutations__WEBPACK_IMPORTED_MODULE_1__["default"].get_variables;
+var set_variables = _resources_store_variaveis_reducer__WEBPACK_IMPORTED_MODULE_1__["default"].set_variables;
 var root_reducers = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  get_variables: get_variables
+  set_variables: set_variables
 });
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(root_reducers));
 

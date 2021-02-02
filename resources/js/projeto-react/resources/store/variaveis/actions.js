@@ -1,5 +1,5 @@
-const getVariables = () => {
-  return { type: "get_variables" }
+const getVariables = (response) => {
+  return { type: "GET_VARIABLES", response }
 }
 
 export default {
