@@ -13,6 +13,19 @@ const get_variables = async () => {
   }
 }
 
+const create_variables = async (data) => {
+  const url = "/variaveis"
+
+  try {    
+    let response = await api.put(url, data)
+    console.log(response.data)
+    return 
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+
 export default {
-  get_variables
+  get_variables,
+  create_variables
 }

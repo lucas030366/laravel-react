@@ -38035,39 +38035,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var initial_state = {
-  combustivel: null,
-  telha_ceramica: null,
-  telha_fibrocimento: null,
-  telha_madeira: null,
-  telha_policarbonato: null,
-  piso_ceramica: null,
-  piso_porcelanato: null,
-  piso_laminado: null,
-  piso_policarbonato: null,
-  tinta: null,
-  pincel: null,
-  rolo_pintura: null,
-  bandeja_pintura: null,
-  mdo_piso: null,
-  mdo_telhado: null,
-  mdo_pintura: null,
-  pregos: null,
-  madeira_viga: null,
-  luvas: null,
-  argamassa: null,
-  cimento: null,
-  areia: null,
-  brita: null,
-  vergalhao: null,
-  escoras: null,
-  rejunte: null,
-  abracadeira: null,
-  gesso: null,
-  lixa: null,
-  lona: null,
-  vassoura: null
-};
 var getVariables = _resources_store_variaveis_actions__WEBPACK_IMPORTED_MODULE_3__["default"].getVariables;
 
 var Variaveis = function Variaveis() {
@@ -38076,15 +38043,10 @@ var Variaveis = function Variaveis() {
   });
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(initial_state),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
       itens = _useState2[0],
       set_itens = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
-      _useState4 = _slicedToArray(_useState3, 2),
-      outer = _useState4[0],
-      set_outer = _useState4[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     if (Object.values(variables).length > 0) return;
@@ -38118,16 +38080,50 @@ var Variaveis = function Variaveis() {
       }, _callee, null, [[0, 7]]);
     }))();
   }, []);
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    set_itens(variables);
+  }, [variables]);
 
   function onChange(event) {
     var _event$target = event.target,
         name = _event$target.name,
         value = _event$target.value;
-    set_outer(_objectSpread(_objectSpread({}, outer), {}, _defineProperty({}, name, value)));
+    set_itens(_objectSpread(_objectSpread({}, itens), {}, _defineProperty({}, name, value)));
   }
 
   function submit() {
-    console.log(outer, variables);
+    return _submit.apply(this, arguments);
+  }
+
+  function _submit() {
+    _submit = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var edit_itens;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              edit_itens = _objectSpread({}, itens);
+              _context2.prev = 1;
+              _context2.next = 4;
+              return _resources_request_variables__WEBPACK_IMPORTED_MODULE_4__["default"].create_variables(edit_itens);
+
+            case 4:
+              _context2.next = 9;
+              break;
+
+            case 6:
+              _context2.prev = 6;
+              _context2.t0 = _context2["catch"](1);
+              console.log(_context2.t0.message);
+
+            case 9:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[1, 6]]);
+    }));
+    return _submit.apply(this, arguments);
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -38135,6 +38131,8 @@ var Variaveis = function Variaveis() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "veiculo"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "Ve\xEDculo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group"
@@ -38143,11 +38141,12 @@ var Variaveis = function Variaveis() {
     htmlFor: "combustivel"
   }, "combust\xEDvel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     name: "combustivel",
+    type: "text",
     className: "form-control",
     id: "combustivel",
-    value: variables.combustivel || '',
+    value: itens.combustivel || "",
     onChange: onChange
-  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "telhado"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "Telhado (pre\xE7o unit\xE1rio)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "row"
@@ -38157,11 +38156,12 @@ var Variaveis = function Variaveis() {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     className: "col-form-label font-weight-normal",
-    htmlFor: "telha_ceramica"
+    htmlFor: "telhado_ceramica"
   }, "cer\xE2mica"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    name: "telha_ceramica",
+    name: "telhado_ceramica",
     className: "form-control",
-    id: "telha_ceramica",
+    id: "telhado_ceramica",
+    value: itens.telhado_ceramica || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38169,11 +38169,12 @@ var Variaveis = function Variaveis() {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     className: "col-form-label font-weight-normal",
-    htmlFor: "telha_fibrocimento"
+    htmlFor: "telhado_fibrocimento"
   }, "fibrocimento"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    name: "telha_fibrocimento",
+    name: "telhado_fibrocimento",
     className: "form-control",
-    id: "telha_fibrocimento",
+    id: "telhado_fibrocimento",
+    value: itens.telhado_fibrocimento || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38181,11 +38182,12 @@ var Variaveis = function Variaveis() {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     className: "col-form-label font-weight-normal",
-    htmlFor: "telha_madeira"
+    htmlFor: "telhado_madeira"
   }, "madeira"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    name: "telha_madeira",
+    name: "telhado_madeira",
     className: "form-control",
-    id: "telha_madeira",
+    id: "telhado_madeira",
+    value: itens.telhado_madeira || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38193,11 +38195,12 @@ var Variaveis = function Variaveis() {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     className: "col-form-label font-weight-normal",
-    htmlFor: "telha_policarbonato"
+    htmlFor: "telhado_policarbonato"
   }, "policarbonato"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    name: "telha_policarbonato",
+    name: "telhado_policarbonato",
     className: "form-control",
-    id: "telha_policarbonato",
+    id: "telhado_policarbonato",
+    value: itens.telhado_policarbonato || "",
     onChange: onChange
   }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "piso"
@@ -38214,6 +38217,7 @@ var Variaveis = function Variaveis() {
     name: "piso_ceramica",
     className: "form-control",
     id: "piso_ceramica",
+    value: itens.piso_ceramica || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38226,6 +38230,7 @@ var Variaveis = function Variaveis() {
     name: "piso_porcelanato",
     className: "form-control",
     id: "piso_porcelanato",
+    value: itens.piso_porcelanato || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38238,6 +38243,7 @@ var Variaveis = function Variaveis() {
     name: "piso_laminado",
     className: "form-control",
     id: "piso_laminado",
+    value: itens.piso_laminado || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38250,6 +38256,7 @@ var Variaveis = function Variaveis() {
     name: "piso_policarbonato",
     className: "form-control",
     id: "piso_policarbonato",
+    value: itens.piso_policarbonato || "",
     onChange: onChange
   }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "pintura"
@@ -38266,6 +38273,7 @@ var Variaveis = function Variaveis() {
     name: "tinta",
     className: "form-control",
     id: "tinta",
+    value: itens.tinta || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38278,6 +38286,7 @@ var Variaveis = function Variaveis() {
     name: "pincel",
     className: "form-control",
     id: "pincel",
+    value: itens.pincel || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38290,6 +38299,7 @@ var Variaveis = function Variaveis() {
     name: "rolo_pintura",
     className: "form-control",
     id: "rolo_pintura",
+    value: itens.rolo_pintura || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38297,11 +38307,12 @@ var Variaveis = function Variaveis() {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     className: "col-form-label font-weight-normal",
-    htmlFor: "bandeja_pintura"
+    htmlFor: "bandeja"
   }, "Bandeja"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    name: "bandeja_pintura",
+    name: "bandeja",
     className: "form-control",
-    id: "bandeja_pintura",
+    id: "bandeja",
+    value: itens.bandeja || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38314,6 +38325,7 @@ var Variaveis = function Variaveis() {
     name: "fita_crepe",
     className: "form-control",
     id: "fita_crepe",
+    value: itens.fita_crepe || "",
     onChange: onChange
   }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "mao_obra"
@@ -38325,11 +38337,12 @@ var Variaveis = function Variaveis() {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     className: "col-form-label font-weight-normal",
-    htmlFor: "mdo_piso"
+    htmlFor: "mao_obra_piso"
   }, "piso"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    name: "mdo_piso",
+    name: "mao_obra_piso",
     className: "form-control",
-    id: "mdo_piso",
+    id: "mao_obra_piso",
+    value: itens.mao_obra_piso || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38337,11 +38350,12 @@ var Variaveis = function Variaveis() {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     className: "col-form-label font-weight-normal",
-    htmlFor: "mdo_telhado"
+    htmlFor: "mao_obra_telhado"
   }, "telhado"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    name: "mdo_telhado",
+    name: "mao_obra_telhado",
     className: "form-control",
-    id: "mdo_telhado",
+    id: "mao_obra_telhado",
+    value: itens.mao_obra_telhado || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38349,11 +38363,25 @@ var Variaveis = function Variaveis() {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     className: "col-form-label font-weight-normal",
-    htmlFor: "mdo_pintura"
-  }, "pintura"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    name: "mdo_pintura",
+    htmlFor: "mao_obra_grafiato"
+  }, "grafiato"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    name: "mao_obra_grafiato",
     className: "form-control",
-    id: "mdo_pintura",
+    id: "mao_obra_grafiato",
+    value: itens.mao_obra_grafiato || "",
+    onChange: onChange
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-md-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+    className: "col-form-label font-weight-normal",
+    htmlFor: "mao_obra_pintura"
+  }, "pintura"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    name: "mao_obra_pintura",
+    className: "form-control",
+    id: "mao_obra_pintura",
+    value: itens.mao_obra_pintura || "",
     onChange: onChange
   }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "outros"
@@ -38370,6 +38398,7 @@ var Variaveis = function Variaveis() {
     name: "pregos",
     className: "form-control",
     id: "pregos",
+    value: itens.pregos || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38382,6 +38411,7 @@ var Variaveis = function Variaveis() {
     name: "madeira_viga",
     className: "form-control",
     id: "madeira_viga",
+    value: itens.madeira_viga || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38394,6 +38424,7 @@ var Variaveis = function Variaveis() {
     name: "luvas",
     className: "form-control",
     id: "luvas",
+    value: itens.luvas || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38406,6 +38437,7 @@ var Variaveis = function Variaveis() {
     name: "argamassa",
     className: "form-control",
     id: "argamassa",
+    value: itens.argamassa || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38418,6 +38450,7 @@ var Variaveis = function Variaveis() {
     name: "cimento",
     className: "form-control",
     id: "cimento",
+    value: itens.cimento || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38430,6 +38463,7 @@ var Variaveis = function Variaveis() {
     name: "areia",
     className: "form-control",
     id: "areia",
+    value: itens.areia || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38442,6 +38476,7 @@ var Variaveis = function Variaveis() {
     name: "brita",
     className: "form-control",
     id: "brita",
+    value: itens.brita || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38454,6 +38489,7 @@ var Variaveis = function Variaveis() {
     name: "vergalhao",
     className: "form-control",
     id: "vergalhao",
+    value: itens.vergalhao || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38466,6 +38502,7 @@ var Variaveis = function Variaveis() {
     name: "escoras",
     className: "form-control",
     id: "escoras",
+    value: itens.escoras || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38478,6 +38515,7 @@ var Variaveis = function Variaveis() {
     name: "rejunte",
     className: "form-control",
     id: "rejunte",
+    value: itens.rejunte || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38490,6 +38528,7 @@ var Variaveis = function Variaveis() {
     name: "abracadeira",
     className: "form-control",
     id: "abracadeira",
+    value: itens.abracadeira || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38502,6 +38541,7 @@ var Variaveis = function Variaveis() {
     name: "gesso",
     className: "form-control",
     id: "gesso",
+    value: itens.gesso || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38514,6 +38554,7 @@ var Variaveis = function Variaveis() {
     name: "lixa",
     className: "form-control",
     id: "lixa",
+    value: itens.lixa || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38526,6 +38567,7 @@ var Variaveis = function Variaveis() {
     name: "lona",
     className: "form-control",
     id: "lona",
+    value: itens.lona || "",
     onChange: onChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-2"
@@ -38538,6 +38580,7 @@ var Variaveis = function Variaveis() {
     name: "vassoura",
     className: "form-control",
     id: "vassoura",
+    value: itens.vassoura || "",
     onChange: onChange
   }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "text-right"
@@ -38875,8 +38918,44 @@ var get_variables = /*#__PURE__*/function () {
   };
 }();
 
+var create_variables = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(data) {
+    var url, response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            url = "/variaveis";
+            _context2.prev = 1;
+            _context2.next = 4;
+            return _axios__WEBPACK_IMPORTED_MODULE_1__["default"].put(url, data);
+
+          case 4:
+            response = _context2.sent;
+            console.log(response.data);
+            return _context2.abrupt("return");
+
+          case 9:
+            _context2.prev = 9;
+            _context2.t0 = _context2["catch"](1);
+            console.log(_context2.t0.message);
+
+          case 12:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[1, 9]]);
+  }));
+
+  return function create_variables(_x) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  get_variables: get_variables
+  get_variables: get_variables,
+  create_variables: create_variables
 });
 
 /***/ }),
