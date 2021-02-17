@@ -1,13 +1,15 @@
 import React from "react";
-import { PowerSettingsNew } from "@material-ui/icons";
-import { Menu } from "@material-ui/core";
+import { AppBar, Toolbar, Typography } from "@material-ui/core"
 
 const Header = () => {
-
 	return (
-		<div>
-		
-		</div>
+		<AppBar >
+			<Toolbar>
+				<Typography variant="h6" noWrap>
+					Mini variant drawer
+          </Typography>
+			</Toolbar>
+		</AppBar>
 	);
 }
 

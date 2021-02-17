@@ -1,22 +1,17 @@
-import React, { useState } from 'react';
-import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+import React, { useState } from "react";
+import { Link } from "react-router-dom"
+
+import clsx from "clsx";
 import List from '@material-ui/core/List';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import Drawer from '@material-ui/core/Drawer';
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Mail as MailIcon, Home as HomeIcon } from '@material-ui/icons';
-import { Link } from "react-router-dom"
 
 const drawerWidth = 240;
 
@@ -75,100 +70,60 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
   },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
 }));
 
-export default function MiniDrawer() {
+const Sidebar = () => {
+  useTheme();
   const classes = useStyles();
-  const theme = useTheme();
   const [open, setOpen] = useState(true);
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
+  function drawer() {
+    const show = open ? false : true
+    setOpen(show);
   };
 
   return (
-    <div className={classes.root}>
-
-      <CssBaseline />
-
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar>
-          <IconButton
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open,
-            })}
-          >
-            <MenuIcon />
-          </IconButton>
-
-          <Typography variant="h6" noWrap>
-            Mini variant drawer
-          </Typography>
-
-        </Toolbar>
-      </AppBar>
-
-      <Drawer
-        variant="permanent"
-        className={clsx(classes.drawer, {
+    <Drawer
+      variant="permanent"
+      className={clsx(classes.drawer, {
+        [classes.drawerOpen]: open,
+        [classes.drawerClose]: !open,
+      })}
+      classes={{
+        paper: clsx({
           [classes.drawerOpen]: open,
           [classes.drawerClose]: !open,
-        })}
-        classes={{
-          paper: clsx({
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
-          }),
-        }}
-      >
-        <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronRightIcon />
-          </IconButton>
-        </div>
+        }),
+      }}
+    >
+      <div className={classes.toolbar}>
+        <IconButton onClick={drawer}>
+          <ChevronRightIcon />
+        </IconButton>
+      </div>
 
-        <Divider />
+      <Divider />
 
-        <List>
+      <List>
 
-          <Link to="/" color="warning.main" >
-            <ListItem button>
-              <ListItemIcon> <HomeIcon /> </ListItemIcon>
-              <ListItemText primary="Início" />
-            </ListItem>
-          </Link>
+        <Link to="/" color="warning.main" >
+          <ListItem button>
+            <ListItemIcon> <HomeIcon /> </ListItemIcon>
+            <ListItemText primary="Início" />
+          </ListItem>
+        </Link>
 
-          <Link to="variaveis" color="inherit" >
-            <ListItem button>
-              <ListItemIcon> <MailIcon /> </ListItemIcon>
-              <ListItemText primary="Variáveis" />
-            </ListItem>
-          </Link>
+        <Link to="variaveis" color="inherit" >
+          <ListItem button>
+            <ListItemIcon> <MailIcon /> </ListItemIcon>
+            <ListItemText primary="Variáveis" />
+          </ListItem>
+        </Link>
 
-        </List>
-      </Drawer>
+      </List>
 
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Typography paragraph>
-          Lorem ipsum
-        </Typography>
-      </main>
-    </div>
-  );
+    </Drawer>
+  )
 }
+
+export default Sidebar
