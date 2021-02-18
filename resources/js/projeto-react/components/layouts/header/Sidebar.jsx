@@ -2,16 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom"
 
 import clsx from "clsx";
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Drawer from '@material-ui/core/Drawer';
+import { ChevronRight, ClearAllRounded, QueueRounded, ViewQuiltRounded } from "@material-ui/icons"
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { Mail as MailIcon, Home as HomeIcon } from '@material-ui/icons';
+import { Box, Divider, Drawer, IconButton, List, ListItem, ListItemIcon, Typography } from "@material-ui/core";
 
 const drawerWidth = 240;
 
@@ -98,7 +91,7 @@ const Sidebar = () => {
     >
       <div className={classes.toolbar}>
         <IconButton onClick={drawer}>
-          <ChevronRightIcon />
+          <ChevronRight />
         </IconButton>
       </div>
 
@@ -106,17 +99,30 @@ const Sidebar = () => {
 
       <List>
 
-        <Link to="/" color="warning.main" >
+        <Link to="/">
           <ListItem button>
-            <ListItemIcon> <HomeIcon /> </ListItemIcon>
-            <ListItemText primary="Início" />
+            <ListItemIcon> <ViewQuiltRounded /> </ListItemIcon>
+            <Typography variant="h6">
+              <Box color="text.primary">Início</Box>
+            </Typography>
           </ListItem>
         </Link>
 
-        <Link to="variaveis" color="inherit" >
+        <Link to="variaveis">
           <ListItem button>
-            <ListItemIcon> <MailIcon /> </ListItemIcon>
-            <ListItemText primary="Variáveis" />
+            <ListItemIcon> <QueueRounded /> </ListItemIcon>
+            <Typography variant="h6">
+              <Box color="text.primary">Variáveis</Box>
+            </Typography>
+          </ListItem>
+        </Link>
+
+        <Link to="orcamento">
+          <ListItem button>
+            <ListItemIcon> <ClearAllRounded /> </ListItemIcon>
+            <Typography variant="h6">
+              <Box color="text.primary">Orçamento</Box>
+            </Typography>
           </ListItem>
         </Link>
 
