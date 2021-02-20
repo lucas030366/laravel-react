@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import clsx from "clsx";
 import { ChevronRight, ClearAllRounded, QueueRounded, ViewQuiltRounded } from "@material-ui/icons"
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { Box, Divider, Drawer, IconButton, List, ListItem, ListItemIcon, Typography } from "@material-ui/core";
+import { Divider, Drawer, IconButton, List, ListItem, ListItemIcon, Typography } from "@material-ui/core";
 
 const drawerWidth = 240;
 
@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar,
+    ...theme.mixins.toolbar,    
   },
 }));
 
@@ -102,8 +102,8 @@ const Sidebar = () => {
         <Link to="/">
           <ListItem button>
             <ListItemIcon> <ViewQuiltRounded /> </ListItemIcon>
-            <Typography variant="h6">
-              <Box color="text.primary">Início</Box>
+            <Typography variant="h6" color="textPrimary">
+              Início
             </Typography>
           </ListItem>
         </Link>
@@ -111,8 +111,8 @@ const Sidebar = () => {
         <Link to="variaveis">
           <ListItem button>
             <ListItemIcon> <QueueRounded /> </ListItemIcon>
-            <Typography variant="h6">
-              <Box color="text.primary">Variáveis</Box>
+            <Typography variant="h6" color="textPrimary">
+              Variáveis
             </Typography>
           </ListItem>
         </Link>
@@ -120,8 +120,8 @@ const Sidebar = () => {
         <Link to="orcamento">
           <ListItem button>
             <ListItemIcon> <ClearAllRounded /> </ListItemIcon>
-            <Typography variant="h6">
-              <Box color="text.primary">Orçamento</Box>
+            <Typography variant="h6" color="textPrimary">
+              Orçamento
             </Typography>
           </ListItem>
         </Link>

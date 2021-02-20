@@ -1,10 +1,11 @@
 import React, { useState, useEffect, Fragment } from "react"
+import { Link } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 
 import clsx from "clsx";
-import { DoneAllRounded } from "@material-ui/icons"
+import { DoneAllRounded, NavigateNext } from "@material-ui/icons"
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, CircularProgress, Container, Grid, InputAdornment, TextField, Typography } from "@material-ui/core"
+import { Button, Breadcrumbs, CircularProgress, Container, Grid, InputAdornment, TextField, Typography } from "@material-ui/core"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -74,9 +75,27 @@ const Variaveis = () => {
     return (
       <Container maxWidth="xl">
 
-        <Typography variant="h3" align="right">
-          Variáveis
-        </Typography>      
+        <Grid container direction="row" alignItems="center" justify="space-between">
+
+          <Grid item md={6}>
+            <Typography variant="h3">
+              Variáveis
+            </Typography>
+          </Grid>
+
+          <Grid item md={2}>
+            <Breadcrumbs separator={<NavigateNext fontSize="small" />}>
+              <Link to="/">
+                <Typography color="textPrimary">Início</Typography>
+              </Link>
+              <Typography color="textPrimary">Variáveis</Typography>
+            </Breadcrumbs>
+          </Grid>
+
+        </Grid>
+
+
+        <hr />
 
         <Typography variant="h6">Veículo</Typography>
 
@@ -95,8 +114,6 @@ const Variaveis = () => {
             onChange={onChange}
           />
         </Grid>
-
-        <hr />
 
         <Typography variant="h6">
           Telhado (preço unitário)
@@ -169,8 +186,6 @@ const Variaveis = () => {
 
         </Grid>
 
-        <hr />
-
         <Typography variant="h6">
           Piso (preço unitário)
       </Typography>
@@ -241,8 +256,6 @@ const Variaveis = () => {
           </Grid>
 
         </Grid>
-
-        <hr />
 
         <Typography variant="h6">
           Pintura
@@ -331,8 +344,6 @@ const Variaveis = () => {
 
         </Grid>
 
-        <hr />
-
         <Typography variant="h6">
           Mão de obra (metro quadrado)
       </Typography>
@@ -403,8 +414,6 @@ const Variaveis = () => {
           </Grid>
 
         </Grid>
-
-        <hr />
 
         <Typography variant="h6">
           Outros
